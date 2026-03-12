@@ -1,0 +1,10 @@
+{
+"name": "finance-app",
+"version": "1.0.0",
+"description": "Finance Tracker App",
+"main": "index.js",
+"scripts": {
+"start": "cordova run android"
+},
+"dependencies": {}
+}
