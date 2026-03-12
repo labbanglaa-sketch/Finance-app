@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<widget id="com.finance.app" version="1.0.0">
+
+<name>Finance Tracker</name>
+
+<description>
+Personal Finance Tracker App
+</description>
+
+<content src="index.html" />
+
+<access origin="*" />
+
+</widget>
