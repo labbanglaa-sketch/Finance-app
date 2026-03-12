@@ -1,6 +1,7 @@
-name: Build Android APK
+name: Build Finance APK
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -10,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -26,12 +28,11 @@ jobs:
           cordova create app com.finance.app FinanceApp
           cp -r www/* app/www/
           cp config.xml app/config.xml
-          cd app
-          cordova platform add android
 
       - name: Build APK
         run: |
           cd app
+          cordova platform add android
           cordova build android
 
       - name: Upload APK
