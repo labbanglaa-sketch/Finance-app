@@ -1,41 +1,41 @@
-‎name: Build Android APK
-‎
-‎on:
-‎  push:
-‎    branches: [ main ]
-‎
-‎jobs:
-‎  build:
-‎
-‎    runs-on: ubuntu-latest
-‎
-‎    steps:
-‎    - name: Checkout
-‎      uses: actions/checkout@v4
-‎
-‎    - name: Install Node
-‎      uses: actions/setup-node@v4
-‎      with:
-‎        node-version: 18
-‎
-‎    - name: Install Cordova
-‎      run: npm install -g cordova
-‎
-‎    - name: Create Cordova App
-‎      run: |
-‎        cordova create app com.finance.app FinanceApp
-‎        cp -r www/* app/www/
-‎        cp config.xml app/config.xml
-‎        cd app
-‎        cordova platform add android
-‎
-‎    - name: Build APK
-‎      run: |
-‎        cd app
-‎        cordova build android
-‎
-‎    - name: Upload APK
-‎      uses: actions/upload-artifact@v4
-‎      with:
-‎        name: finance-apk
-‎        path: app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Create Cordova Project
+        run: |
+          cordova create app com.finance.app FinanceApp
+          cp -r www/* app/www/
+          cp config.xml app/config.xml
+          cd app
+          cordova platform add android
+
+      - name: Build APK
+        run: |
+          cd app
+          cordova build android
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: finance-apk
+          path: app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
